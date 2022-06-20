@@ -1,0 +1,81 @@
+[{
+  "_id": {
+    "$oid": "62aff7cf8cb04d56786ae019"
+  },
+  "name": "Admin",
+  "email": "admin@gmail.com",
+  "password": "$2b$10$ClustPhEV5UYRVjBJfGktu4.m8yF79GdjMhGUJecLo0ryPaEsiBhq",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": "1",
+  "date": {
+    "$date": {
+      "$numberLong": "1655699407831"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62afffa58cb04d56786ae01c"
+  },
+  "name": "Anish Kumar",
+  "email": "anish@gmail.com",
+  "password": "$2b$10$01Wp89qobyOngChB/wbHd.IX7PldwOHwNpdUSRntlfjyzHRzk5PUO",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": "1",
+  "date": {
+    "$date": {
+      "$numberLong": "1655701413838"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b0385498e819c07d20f842"
+  },
+  "name": "Procurement Manager",
+  "email": "procurement@gmail.com",
+  "password": "$2b$10$Rr6GSFUJJczdNk4A0W/jq.STGj68FYmvfyqK9z3tvNj.YBb.pfZWu",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": "2",
+  "date": {
+    "$date": {
+      "$numberLong": "1655715924307"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b0392398e819c07d20f84a"
+  },
+  "name": "Inspection Manager",
+  "email": "inspection@gmail.com",
+  "password": "$2b$10$qMYMJbt6mffwfOgKu4E.WOpXYrCzYBc08yt3J9f7ThzMA9cZLXUWe",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": "3",
+  "date": {
+    "$date": {
+      "$numberLong": "1655716131022"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b03a1898e819c07d20f84f"
+  },
+  "name": "Client",
+  "email": "client@gmail.com",
+  "password": "$2b$10$mwvC50U4XDDQhoKRsTnPPugchmORk0OMrojy58qUD6z.S4doTiEEW",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": "4",
+  "date": {
+    "$date": {
+      "$numberLong": "1655716376001"
+    }
+  },
+  "__v": 0
+}]

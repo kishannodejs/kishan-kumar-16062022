@@ -8,6 +8,7 @@
       name="name"
       placeholder="Enter Name"
       value="<%= typeof name != 'undefined' ? name : '' %>"
+      class="form-control"
     />
   
 </div>
@@ -18,6 +19,7 @@
       name="email"
       placeholder="Enter Email"
       value="<%= typeof email != 'undefined' ? email : '' %>"
+      class="form-control"
     />
   </div>
   <div >
@@ -27,6 +29,7 @@
       name="password"
       placeholder="Create Password"
       value="<%= typeof password != 'undefined' ? password : '' %>"
+      class="form-control"
     />
   </div>
   <div >
@@ -36,9 +39,10 @@
       name="password2"
       placeholder="Confirm Password"
       value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+      class="form-control"
     />
   </div>
-  <button type="submit" class="btn btn-primary btn-block">
+  <button type="submit" class="btn btn-default">
     Register
   </button>
 </form>

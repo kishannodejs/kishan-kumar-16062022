@@ -10,13 +10,16 @@ router.get('/register', (req,res)=>{
 })
 
 router.get('/dashboard',(req,res)=>{
-
- //   console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA",req);
-
-  //  console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",res);
-
-
-    res.render('dashboard',{user: req.user });
+     res.render('dashboard',{user: req.user });
     })
+
+
+router.get('/manager',(req,res)=>{
+res.render('dashboard',{user: req.user });
+})
+
+router.get('/client',(req,res)=>{
+res.render('dashboard',{user: req.user });
+})
 
 module.exports = router; 

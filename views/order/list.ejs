@@ -1,0 +1,111 @@
+<div class="sidebar">  
+    <a class="active" href="/dashboard">Dashboard</a>
+    <a href="#news">Create User</a>
+    <a href="/orders">Create Order</a>
+    <a href="/users/logout">Logout</a>
+  </div>
+  
+  <div class="content">
+    <div class="ks-nav-body-wrapper">
+      <div class="container-fluid">
+         <table id="ks-datatable" class="table table-striped table-bordered" width="100%">
+          <thead>
+           <tr>
+            <th>S.No.</th>
+            <th>Cooler</th>
+            <th>Category</th>
+            <th>Note</th>
+            <th>Image</th>
+            <th>Created At</th>           
+            <th class="text-center">Status</th>
+            <th class="text-center">Actions</th>
+           </tr>
+          </thead>
+          <tbody>
+           <% if(order.length > 0) { for(var i=0; i < order.length; i++) { %>
+             <tr>
+              <td><%=(i+1)%></td>
+              <td class="capitalize"><%=order[i].cooler==1 ? 'Yes' : 'No' %></td>
+              <td><%=order[i].category==1 ? 'Eatable':'' %><%=order[i].category==2 ? 'Drinkable':'' %><%=order[i].category==3 ? 'Medicine':'' %></td>
+              <td><%=order[i].note%></td>
+              <td><img src="../images/uploads/<%=order[i].image_path%>" width="50px" /></td>              
+              <td><%=moment(order[i].date).format("MMM-DD-YYYY h:m A")%></td>
+              <% if(order[i].status == 1) { %>
+                <td class="text-center">Completed</td>
+                <% } else if(order[i].status == 2) { %>
+                <td class="text-center">Inprocess</td>
+                <% } else if(order[i].status == 3) { %>
+                <td class="text-center">Pending</td>
+                <% } else { %>
+                <td class="text-center">Active</td>
+                <% } %>
+              <td class="text-center"><a href="/orders/edit/<%=order[i]._id%>" title="Edit">Edit</a> <a href="/orders/delete/<%=order[i]._id%>" title="Delete" onclick="return confirm('Are you sure to delete this record?');">Delete</a></td>
+             </tr>
+             <% } %>
+             <tr><td colspan="6" class="text-right">
+             </td></tr>
+             <% } else { %>
+             <tr><td colspan="6" class="text-center">No record available!</td></tr>
+             <% } %>
+          </tbody>
+         </table>
+      </div>
+     </div>
+  </div>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Lato", sans-serif;
+    }
+    
+    .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 200px;
+      background-color: #f1f1f1;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+    }
+    
+    .sidebar a {
+      display: block;
+      color: black;
+      padding: 16px;
+      text-decoration: none;
+    }
+     
+    .sidebar a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+    
+    .sidebar a:hover:not(.active) {
+      background-color: #555;
+      color: white;
+    }
+    
+    div.content {
+      margin-left: 200px;
+      padding: 1px 16px;
+      height: 1000px;
+    }
+    
+    @media screen and (max-width: 700px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+      .sidebar a {float: left;}
+      div.content {margin-left: 0;}
+    }
+    
+    @media screen and (max-width: 400px) {
+      .sidebar a {
+        text-align: center;
+        float: none;
+      }
+    }
+    </style>

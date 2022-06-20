@@ -6,16 +6,22 @@ const expressEjsLayout = require('express-ejs-layouts')
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require("passport");
+var path = require('path');
 
 //passport config:
 require('./config/passport')(passport)
 //mongoose
 mongoose.connect('mongodb://localhost/kishan-kumar-16062022',{useNewUrlParser: true, useUnifiedTopology : true})
-.then(() => console.log('connected,,'))
+.then(() => console.log('connected to MongoD'))
 .catch((err)=> console.log(err));
 
 //EJS
 app.set('view engine','ejs');
+
+app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
+
+ app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressEjsLayout);
 //BodyParser
 app.use(express.urlencoded({extended : false}));
@@ -38,5 +44,6 @@ app.use((req,res,next)=> {
 //Routes
 app.use('/',require('./routes/index'));
 app.use('/users',require('./routes/users'));
+app.use('/orders',require('./routes/orders'));
 
 app.listen(3000); 

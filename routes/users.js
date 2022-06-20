@@ -11,20 +11,32 @@ router.get('/register',(req,res)=>{
     res.render('register')
     })
 //Register handle
-router.post('/login',(req,res,next)=>{
-
-console.log(res.user);
-
-passport.authenticate('local',{
-    successRedirect : '/dashboard'+req.user.role,
-    failureRedirect: '/users/login',
-    failureFlash : true
-}
-)
+// router.post('/login',(req,res,next)=>{
 
 
-(req,res,next)
-})
+
+// passport.authenticate('local',{
+//     successRedirect : '/dashboard',
+//     failureRedirect: '/users/login',
+//     failureFlash : true
+// }
+// )
+
+
+// (req,res,next)
+// })
+
+
+router.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/users/login' }),
+  function(req, res) {
+
+    res.redirect('/dashboard');
+
+   // res.redirect('/'+req.authInfo.abc);
+  });
+
+
   //register post handle
   router.post('/register',(req,res)=>{
     const {name,email, password, password2} = req.body;

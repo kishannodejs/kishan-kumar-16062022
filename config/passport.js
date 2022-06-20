@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
 module.exports = function(passport){
+    
     passport.use(
         new LocalStrategy({usernameField: 'email'},(email,password,done)=>{
             //match user
@@ -15,7 +16,16 @@ module.exports = function(passport){
                 bcrypt.compare(password,user.password,(err,isMatch)=>{
                     if(err) throw err;
                     if(isMatch){
-                        return done(null,user);
+                      //  console.log("PPPPPPPPPP",user)
+                        var myurl="";
+                        if(user.role==1){
+                            myurl = "dashboard";
+                        } else if(user.role==4) {
+                            myurl = "client";
+                        } else{
+                            myurl = "manager";
+                        }
+                        return done(null,user,{abc:myurl});
                     } else{
                         return done(null,false,{message: 'password incorrect'});
                     }
