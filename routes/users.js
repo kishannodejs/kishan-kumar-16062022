@@ -12,11 +12,18 @@ router.get('/register',(req,res)=>{
     })
 //Register handle
 router.post('/login',(req,res,next)=>{
+
+console.log(res.user);
+
 passport.authenticate('local',{
-    successRedirect : '/dashboard',
+    successRedirect : '/dashboard'+req.user.role,
     failureRedirect: '/users/login',
     failureFlash : true
-})(req,res,next)
+}
+)
+
+
+(req,res,next)
 })
   //register post handle
   router.post('/register',(req,res)=>{
@@ -78,9 +85,12 @@ passport.authenticate('local',{
     }
     })
 //logout
-router.get('/logout',(req,res)=>{
-req.logout();
-req.flash('success_msg','Now logged out');
-res.redirect('/users/login'); 
-})
+
+router.get("/logout", (req, res) => {
+    req.logout(req.user, err => {
+      if(err) return next(err);
+      res.redirect("/");
+    });
+  });
+
 module.exports  = router;

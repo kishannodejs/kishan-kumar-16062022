@@ -10,6 +10,12 @@ router.get('/register', (req,res)=>{
 })
 
 router.get('/dashboard',(req,res)=>{
+
+ //   console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA",req);
+
+  //  console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",res);
+
+
     res.render('dashboard',{user: req.user });
     })
 
