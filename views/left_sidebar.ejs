@@ -1,0 +1,10 @@
+<div class="sidebar">  
+    <a class="active" href="/dashboard">Dashboard</a>
+    <% if(session.role == 1) { %>
+      <a href="/users/register">Create User</a>
+      <a href="/users/list">List User</a>
+      <% } %>
+    <a href="/orders">Create Order</a>
+    <a href="/orders/list">List Order</a>
+    <a href="/users/logout">Logout</a>
+  </div>

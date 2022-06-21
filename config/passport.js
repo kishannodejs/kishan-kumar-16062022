@@ -25,7 +25,7 @@ module.exports = function(passport){
                         } else{
                             myurl = "manager";
                         }
-                        return done(null,user,{abc:myurl});
+                        return done(null,user,{myurl:myurl});
                     } else{
                         return done(null,false,{message: 'password incorrect'});
                     }

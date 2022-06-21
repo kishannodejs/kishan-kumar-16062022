@@ -1,7 +1,9 @@
 const express = require('express');
 var multer  = require('multer');
 const router  = express.Router();
+var commonfunc = require('../commonfunction.js');
 const Order = require("../models/order");
+
 
 
 const upload = multer({
@@ -30,11 +32,16 @@ const upload = multer({
 
 
 //login page
-router.get('/', (req,res)=>{
+router.get('/', commonfunc.isAuthenticated, (req,res)=>{
     res.render('order/order',{user: req.user });
 })
 
-router.get('/list', async (req,res)=>{
+router.get('/list', commonfunc.isAuthenticated, async (req,res)=>{
+
+  session = req.session;
+
+  console.log(session);
+
  //   res.render('order/list',{user: req.user });
  var moment = require('moment');
     try {
@@ -45,7 +52,7 @@ router.get('/list', async (req,res)=>{
     }
 })
 
-router.get('/edit/:id', async(req,res)=>{
+router.get('/edit/:id', commonfunc.isAuthenticated, async(req,res)=>{
     const _id = req.params.id;
     try {
         const order = await Order.findOne({_id: _id});
@@ -55,7 +62,7 @@ router.get('/edit/:id', async(req,res)=>{
     }    
 })
 
-router.post('/edit/:id', upload.single('order_file'), async(req,res)=>{
+router.post('/edit/:id', commonfunc.isAuthenticated, upload.single('order_file'), async(req,res)=>{
     const _id = req.params.id;
      
     try{
@@ -94,7 +101,7 @@ router.post('/edit/:id', upload.single('order_file'), async(req,res)=>{
 
 
 
-router.post('/add', upload.single('order_file'), async(req,res)=>{
+router.post('/add', commonfunc.isAuthenticated, upload.single('order_file'), async(req,res)=>{
 
     console.log(req.body);
 
@@ -143,6 +150,24 @@ router.post('/add', upload.single('order_file'), async(req,res)=>{
    // res.render('order/list');
 })
 
+
+
+
+router.get('/delete/:id', commonfunc.isAuthenticated, async(req,res)=>{
+
+  
+  const _id = req.params.id;
+   
+  try{
+      await Order.findOneAndRemove({ _id: _id});
+      res.redirect('/orders/list');
+
+  } catch (error) {
+      res.status(401).json({message: error.message});
+  }
+
+
+})
 
 
 module.exports = router; 

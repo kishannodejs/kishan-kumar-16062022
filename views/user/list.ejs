@@ -7,34 +7,33 @@
           <thead>
            <tr>
             <th>S.No.</th>
-            <th>Cooler</th>
-            <th>Category</th>
-            <th>Note</th>
-            <th>Image</th>
-            <th>Created At</th>           
-            <th class="text-center">Status</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Created At</th>   
             <th class="text-center">Actions</th>
            </tr>
           </thead>
           <tbody>
-           <% if(order.length > 0) { for(var i=0; i < order.length; i++) { %>
+           <% if(user.length > 0) { for(var i=0; i < user.length; i++) { %>
              <tr>
               <td><%=(i+1)%></td>
-              <td class="capitalize"><%=order[i].cooler==1 ? 'Yes' : 'No' %></td>
-              <td><%=order[i].category==1 ? 'Eatable':'' %><%=order[i].category==2 ? 'Drinkable':'' %><%=order[i].category==3 ? 'Medicine':'' %></td>
-              <td><%=order[i].note%></td>
-              <td><img src="../images/uploads/<%=order[i].image_path%>" width="50px" /></td>              
-              <td><%=moment(order[i].date).format("MMM-DD-YYYY h:m A")%></td>
-              <% if(order[i].status == 1) { %>
-                <td class="text-center">Completed</td>
-                <% } else if(order[i].status == 2) { %>
-                <td class="text-center">Inprocess</td>
-                <% } else if(order[i].status == 3) { %>
-                <td class="text-center">Pending</td>
-                <% } else { %>
-                <td class="text-center">Active</td>
-                <% } %>
-              <td class="text-center"><a href="/orders/edit/<%=order[i]._id%>" title="Edit">Edit</a> <a href="/orders/delete/<%=order[i]._id%>" title="Delete" onclick="return confirm('Are you sure to delete this record?');">Delete</a></td>
+              <td class="capitalize"><%=user[i].name %></td>
+              <td><%=user[i].email %></td>
+                <% if(user[i].role == 1) { %>
+                  <td class="text-center">Admin</td>
+                  <% } else if(user[i].role == 2) { %>
+                  <td class="text-center">Procurement Manager</td>
+                  <% } else if(user[i].role == 3) { %>
+                  <td class="text-center">Inspection Manager</td>
+                  <% } else if(user[i].role == 4){ %>
+                  <td class="text-center">Client</td>
+                  <% } %>
+              
+              
+              </td>              
+              <td><%=moment(user[i].date).format("MMM-DD-YYYY h:m A")%></td>
+              <td class="text-center"><a href="/orders/edit/<%=user[i]._id%>" title="Edit">Edit</a> <a href="/orders/delete/<%=user[i]._id%>" title="Delete" onclick="return confirm('Are you sure to delete this record?');">Delete</a></td>
              </tr>
              <% } %>
              <tr><td colspan="6" class="text-right">

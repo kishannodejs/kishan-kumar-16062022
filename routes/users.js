@@ -3,11 +3,13 @@ const router = express.Router();
 const User = require("../models/user");
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+var commonfunc = require('../commonfunction.js');
+
 //login handle
 router.get('/login',(req,res)=>{
     res.render('login');
 })
-router.get('/register',(req,res)=>{
+router.get('/register', commonfunc.isAdminAuthenticated,(req,res)=>{
     res.render('register')
     })
 //Register handle
@@ -27,18 +29,43 @@ router.get('/register',(req,res)=>{
 // })
 
 
+router.get('/list', async (req,res)=>{
+
+    session = req.session;
+  
+    console.log(session);
+  
+ 
+   var moment = require('moment');
+      try {
+          const user= await User.find();
+        res.render('user/list' , {title: 'dashboard' , user:user, moment:moment})
+
+        
+      } catch(error) {
+          res.status(404).json({message: error.message});
+      }
+  })
+
+
 router.post('/login', 
   passport.authenticate('local', { failureRedirect: '/users/login' }),
   function(req, res) {
 
-    res.redirect('/dashboard');
+    session = req.session;
+					session.userid = req.user._id;
+					session.email = req.user.email;
+					session.name = req.user.name;
+					session.role = req.user.role;
 
-   // res.redirect('/'+req.authInfo.abc);
+   // res.redirect('/dashboard');
+
+    res.redirect('/'+req.authInfo.myurl);
   });
 
 
   //register post handle
-  router.post('/register',(req,res)=>{
+  router.post('/register', commonfunc.isAdminAuthenticated,(req,res)=>{
     const {name,email, password, password2} = req.body;
     let errors = [];
     console.log(' Name ' + name+ ' email :' + email+ ' pass:' + password);
@@ -99,8 +126,10 @@ router.post('/login',
 //logout
 
 router.get("/logout", (req, res) => {
+    
     req.logout(req.user, err => {
       if(err) return next(err);
+      req.session.destroy();
       res.redirect("/");
     });
   });
