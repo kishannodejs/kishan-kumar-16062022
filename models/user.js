@@ -8,6 +8,10 @@ const UserSchema  = new mongoose.Schema({
     type  : String,
     required : true
 } ,
+mobile:{ type : Number, 
+    unique : true,
+     required : true
+    } ,
 password :{
     type  : String,
     required : true
@@ -23,7 +27,7 @@ isOwner: {
     required: true 
 },
 role: {
-    type: String,
+    type: Number,
     required: true,
     default: 4, 
     enum: [1,2,3,4]

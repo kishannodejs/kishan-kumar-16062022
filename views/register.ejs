@@ -16,6 +16,7 @@
     />
   
 </div>
+
 <div>
     <label for="email">Email</label>
     <input
@@ -26,6 +27,23 @@
       class="form-control"
     />
   </div>
+
+
+<div>
+    <label for="mobile">Mobile</label>
+    <input
+      type="tel"
+      name="mobile"
+      placeholder="Enter Mobile"
+      pattern="[6789][0-9]{9}"
+      value="<%= typeof mobile != 'undefined' ? mobile : '' %>"
+      class="form-control" />
+  </div>
+
+
+
+
+
   <div >
     <label for="password">Password</label>
     <input

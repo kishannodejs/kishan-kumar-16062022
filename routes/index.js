@@ -5,7 +5,7 @@ const passport = require('passport');
 var commonfunc = require('../commonfunction.js');
 
 //login page
-router.get('/', commonfunc.isAuthenticated, (req,res)=>{
+router.get('/', (req,res)=>{
     res.render('welcome');
 })
 //register page

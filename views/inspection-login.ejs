@@ -1,0 +1,36 @@
+<h1> Login </h1>
+<%- include ('./partials/messages') %>
+<div class="container"></div>
+<form action="/users/imlogin" method="POST">
+<div>
+<label for="email">Mobile</label>
+
+
+
+<input type="tel" id="mobile" name="email"
+placeholder="Enter Mobile"
+pattern="[6789][0-9]{9}"
+       class="form-control"
+       required>
+
+
+
+
+
+
+
+</div>
+<div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="password"
+      placeholder="Enter Password"
+      class="form-control"
+    />
+  
+</div>
+<button type="submit" class="btn btn-default">Login</button>
+   
+</form>
+</div>

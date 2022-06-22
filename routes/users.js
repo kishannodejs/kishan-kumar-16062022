@@ -9,7 +9,12 @@ var commonfunc = require('../commonfunction.js');
 router.get('/login',(req,res)=>{
     res.render('login');
 })
-router.get('/register', commonfunc.isAdminAuthenticated,(req,res)=>{
+
+router.get('/imlogin',(req,res)=>{
+    res.render('inspection-login.ejs');
+})
+
+router.get('/register', commonfunc.isAdminAuthenticated, (req,res)=>{
     res.render('register')
     })
 //Register handle
@@ -57,6 +62,7 @@ router.post('/login',
 					session.email = req.user.email;
 					session.name = req.user.name;
 					session.role = req.user.role;
+                   // session.mobile = req.user.mobile;
 
    // res.redirect('/dashboard');
 
@@ -64,9 +70,29 @@ router.post('/login',
   });
 
 
+  
+router.post('/imlogin', 
+passport.authenticate('local', { failureRedirect: '/users/imlogin' }),
+function(req, res) {
+
+    console.log(req.body);
+
+  session = req.session;
+                  session.userid = req.user._id;
+                  session.email = req.user.email;
+                  session.name = req.user.name;
+                  session.role = req.user.role;
+                 // session.mobile = req.user.mobile;
+
+ // res.redirect('/dashboard');
+
+  res.redirect('/'+req.authInfo.myurl);
+});
+
+
   //register post handle
-  router.post('/register', commonfunc.isAdminAuthenticated,(req,res)=>{
-    const {name,email, password, password2} = req.body;
+  router.post('/register', commonfunc.isAdminAuthenticated, (req,res)=>{
+    const {name,email, mobile, password, password2} = req.body;
     let errors = [];
     console.log(' Name ' + name+ ' email :' + email+ ' pass:' + password);
     if(!name || !email || !password || !password2) {
@@ -86,6 +112,7 @@ router.post('/login',
         errors : errors,
         name : name,
         email : email,
+        mobile : mobile,
         password : password,
         password2 : password2})
      } else {
@@ -99,6 +126,7 @@ router.post('/login',
             const newUser = new User({
                 name : name,
                 email : email,
+                mobile : mobile,
                 password : password
             });
     

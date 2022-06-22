@@ -5,13 +5,12 @@ const bcrypt = require('bcrypt');
 module.exports = function(passport){
     
     passport.use(
-        new LocalStrategy({usernameField: 'email'},(email,password,done)=>{
+        new LocalStrategy({usernameField: 'mobile'},(mobile,password,done)=>{
             //match user
-            // User.findOne({$or: [{email: email},{mobile: mobile}, ],})
-            User.findOne({email:email})
+            User.findOne({mobile:mobile})
             .then((user)=>{
                 if(!user){
-                    return done(null,false,{message:'email not registered'});
+                    return done(null,false,{message:'mobile not registered'});
                 }
                 //math passwords
                 bcrypt.compare(password,user.password,(err,isMatch)=>{
