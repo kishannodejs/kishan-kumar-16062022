@@ -1,4 +1,4 @@
-<%- include('../left_sidebar'); %>
+<%- include('../client_sidebar'); %>
   
   <div class="content">
     <div class="ks-nav-body-wrapper">
@@ -39,9 +39,10 @@
               <td class="text-center">
                 
                 <% if(session.role == 3  && order[i].status == 5) { %>  Procurement Manager not initiate it.
-                  <% } else  { %>
+                  <% } else if(session.role != 4)  { %>
                 <a href="/orders/edit/<%=order[i]._id%>" title="Edit">Edit</a>
                 <% } %>
+                <a href="/orders/view/<%=order[i]._id%>" title="Edit">Check Order Details</a>
                 <% if(session.role == 1 ) { %>  
                  <a href="/orders/delete/<%=order[i]._id%>" title="Delete" onclick="return confirm('Are you sure to delete this record?');">Delete</a>
                  <% } %>
@@ -60,59 +61,4 @@
      </div>
   </div>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Lato", sans-serif;
-    }
-    
-    .sidebar {
-      margin: 0;
-      padding: 0;
-      width: 200px;
-      background-color: #f1f1f1;
-      position: fixed;
-      height: 100%;
-      overflow: auto;
-    }
-    
-    .sidebar a {
-      display: block;
-      color: black;
-      padding: 16px;
-      text-decoration: none;
-    }
-     
-    .sidebar a.active {
-      background-color: #04AA6D;
-      color: white;
-    }
-    
-    .sidebar a:hover:not(.active) {
-      background-color: #555;
-      color: white;
-    }
-    
-    div.content {
-      margin-left: 200px;
-      padding: 1px 16px;
-      height: 1000px;
-    }
-    
-    @media screen and (max-width: 700px) {
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-      }
-      .sidebar a {float: left;}
-      div.content {margin-left: 0;}
-    }
-    
-    @media screen and (max-width: 400px) {
-      .sidebar a {
-        text-align: center;
-        float: none;
-      }
-    }
-    </style>
+  

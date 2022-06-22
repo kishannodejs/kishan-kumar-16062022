@@ -29,7 +29,7 @@ router.get('/register', commonfunc.isAdminAuthenticated,(req,res)=>{
 // })
 
 
-router.get('/list', async (req,res)=>{
+router.get('/list', commonfunc.isAdminAuthenticated, async (req,res)=>{
 
     session = req.session;
   
@@ -38,7 +38,7 @@ router.get('/list', async (req,res)=>{
  
    var moment = require('moment');
       try {
-          const user= await User.find();
+          const user= await User.find({"role": {$ne : 1}});
         res.render('user/list' , {title: 'dashboard' , user:user, moment:moment})
 
         
@@ -114,7 +114,7 @@ router.post('/login',
                     .then((value)=>{
                         console.log(value)
                         req.flash('success_msg','You have now registered!');
-                        res.redirect('/users/login');
+                        res.redirect('/users/list');
                     })
                     .catch(value=> console.log(value));
                       
@@ -124,6 +124,58 @@ router.post('/login',
     }
     })
 //logout
+
+router.get('/edit/:id', commonfunc.isAdminAuthenticated, async(req,res)=>{
+    const _id = req.params.id;
+    try {
+        const user = await User.findOne({_id: _id});
+        console.log(user);
+      res.render('user/edit' , {title: 'Edit User' , user:user})
+    } catch(error) {
+        res.status(404).json({message: error.message});
+    }    
+})
+
+
+router.post('/edit/:id', commonfunc.isAdminAuthenticated, async(req,res)=>{
+    const _id = req.params.id;
+     
+    try{    
+
+        console.log("req.body.role",req.body.role);
+
+        await User.findOneAndUpdate({
+            _id: _id,
+        },
+        {   
+            role:req.body.role
+        }
+        )
+        res.redirect('/users/list');
+
+    } catch (error) {
+        res.status(401).json({message: error.message});
+    }
+
+
+})
+
+
+router.get('/delete/:id', commonfunc.isAuthenticated, async(req,res)=>{
+
+  
+    const _id = req.params.id;
+     
+    try{
+        await User.findOneAndRemove({ _id: _id});
+        res.redirect('/users/list');
+  
+    } catch (error) {
+        res.status(401).json({message: error.message});
+    }
+  
+  
+  })
 
 router.get("/logout", (req, res) => {
     

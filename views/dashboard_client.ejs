@@ -1,6 +1,21 @@
   <%- include('./client_sidebar'); %>
   <div class="content">
     <h2>  <p> Welcome <%= name %><%= //user.role %></p></h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      
+        <tr>
+          <td><%= session.name %></td>
+          <td><%= session.email %></td>
+        </tr>
+      </tbody>
+    </table>
     
   </div>
 

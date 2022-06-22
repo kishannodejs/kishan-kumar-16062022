@@ -1,5 +1,9 @@
-<h1>Register</h1>
 <%- include ('./partials/messages') %>
+<%- include('left_sidebar'); %>
+<div class="content">
+  <div class="ks-nav-body-wrapper">
+    <div class="container-fluid">
+      <h1>Register</h1>
 <form action="/users/register" method="POST">
 <div>
     <label for="name">Name</label>
@@ -46,4 +50,6 @@
     Register
   </button>
 </form>
-<p >Have An Account? <a href="/users/login">Login</a></p>
+</div>
+</div>
+</div>

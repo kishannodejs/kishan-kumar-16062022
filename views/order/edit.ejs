@@ -2,7 +2,7 @@
   
   <div class="content">
     <form action="/orders/edit/<%=order._id%>" method="POST" enctype="multipart/form-data">
-                
+      <% if(session.role == 1 ||  session.role == 2) { %>    
       <label for="cooler">Cooler Present *</label>
       <div class="form-check">
           <input type="radio" class="form-check-input" id="radio1" name="cooler" value=1 
@@ -54,8 +54,27 @@
         <div class="form-check">
           <input type="file" id="order_file" name="order_file">
         </div>
+        <% } %>   
+        
+          <label for="category">Status </label>
+          <div class="form-check">
+          <select name="status" class="selectpicker">
+              <option>Update Status</option>
+              <option value="1"  <%=order.status==1 ? 'selected':'' %>>Completed</option>
+              <option value="2" <%=order.status==2 ? 'selected':'' %>>Inprocess</option>
+              <option value="3" <%=order.status==3 ? 'selected':'' %>>Pending</option>
+              <% if(session.role == 1 ||  session.role == 2) { %>  
+              <option value="4" <%=order.status==4 ? 'selected':'' %>>Active</option>
+              <% } %> 
+              <option value="5" <%=order.status==5 ? 'selected':'' %>>In-Active</option>
+            </select>
+
+            
+
+          </div>
+         
         <br />
-        <button type="submit" class="btn btn-default">Create Order</button>
+        <button type="submit" class="btn btn-default">Update Order</button>
       </form>
   </div>
 

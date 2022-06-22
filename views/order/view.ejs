@@ -1,0 +1,61 @@
+<%- include('../client_sidebar'); %>
+  
+  <div class="content">
+    <form action="/orders/edit/<%=order._id%>" method="POST" enctype="multipart/form-data">
+     
+      <label for="cooler">Cooler Present *</label>
+      <div class="form-check">
+          <input type="radio" class="form-check-input" id="radio1" name="cooler" value=1 
+          
+          <%=order.cooler==1 ? 'checked':'' %> disabled>Yes
+          <label class="form-check-label" for="radio1"></label>
+        </div>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="radio2" name="cooler" value=0  <%=order.cooler==0 ? 'checked':'' %> disabled>No
+          <label class="form-check-label" for="radio2"></label>
+        </div>
+       
+        <label for="category">Category *</label>
+        <div class="form-check">
+        <select name="category" class="selectpicker" disabled >
+            <option>Select Category</option>
+            <option value="1"  <%=order.category==1 ? 'selected':'' %>>Eatable</option>
+            <option value="2" <%=order.category==2 ? 'selected':'' %>>Drinkable</option>
+            <option value="3" <%=order.category==3 ? 'selected':'' %>>Medicine</option>
+          </select>
+        </div>
+
+        <label for="driver">Driver Details*</label>
+
+      <div class="form-check">       
+          <input type="checkbox" class="form-check-input" id="check1" name="licence" value="1" <%=order.licence==1 ? 'checked':'' %> disabled >
+          <label class="form-check-label" for="check1">Licence Present</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="check2" name="driver_number" value="1" <%=order.driver_number==1 ? 'checked':'' %> disabled >
+          <label class="form-check-label" for="check2">Driver Number Active</label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" name="vehicle_rc" value="1" <%=order.vehicle_rc==1 ? 'checked':'' %> disabled >
+          <label class="form-check-label">Vehicle RC Book Present</label>
+        </div>
+
+
+        <label for="email">Note</label>
+        <div class="form-check">
+          
+            <textarea id="w3review" name="note" rows="2" cols="50" readonly disabled><%=order.note%></textarea>
+        </div>
+
+        <label for="email">Attach *</label>
+        <img src="../../images/uploads/<%=order.image_path%>" width="50px" />
+        
+        
+        
+       
+
+          </div>
+      </form>
+  </div>
+
+  
