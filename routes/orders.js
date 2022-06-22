@@ -33,6 +33,7 @@ const upload = multer({
 
 
 //login page
+
 router.get('/', commonfunc.isAuthenticated, async (req,res)=>{
 
 
