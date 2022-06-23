@@ -6,9 +6,24 @@ module.exports = function(passport){
     
     passport.use(
         new LocalStrategy({usernameField: 'email'},(email,password,done)=>{
+
+            console.log(email);
+
+           let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+           if(email.match(regexEmail)){
+            var mobile="";
+           } else {
+            var mobile=email;
+            var email = "";
+           }
+
+
+          // return;
+
+
             //match user
-            // User.findOne({$or: [{email: email},{mobile: mobile}, ],})
-            User.findOne({email:email})
+             User.findOne({$or: [{email: email},{mobile: mobile}, ],})
+          //  User.findOne({email:email})
             .then((user)=>{
                 if(!user){
                     return done(null,false,{message:'email not registered'});
