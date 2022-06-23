@@ -40,7 +40,7 @@ router.get('/', commonfunc.isAuthenticated, async (req,res)=>{
     try {
       const userclient= await User.find({role : 4});
       console.log(userclient);
-        res.render('order/order',{user: req.user, userclient:userclient });
+        res.render('order/order',{user: req.user, userclient:userclient, title: 'Create Order' });
   } catch(error) {
       res.status(404).json({message: error.message});
   }
@@ -60,7 +60,7 @@ router.get('/list', commonfunc.isAuthenticated, async (req,res)=>{
         const order= await Order.find();
 
         console.log(order);
-      res.render('order/list' , {title: 'dashboard' , order:order, moment:moment})
+      res.render('order/list' , {title: 'List Order' , order:order, moment:moment})
     } catch(error) {
         res.status(404).json({message: error.message});
     }
@@ -93,7 +93,7 @@ router.get('/edit/:id', commonfunc.isAuthenticated, async(req,res)=>{
     const _id = req.params.id;
     try {
         const order = await Order.findOne({_id: _id});
-      res.render('order/edit' , {title: 'dashboard222' , order:order})
+      res.render('order/edit' , {title: 'Edit Order' , order:order})
     } catch(error) {
         res.status(404).json({message: error.message});
     }    
@@ -103,7 +103,7 @@ router.get('/view/:id', commonfunc.isAuthenticated, async(req,res)=>{
   const _id = req.params.id;
   try {
       const order = await Order.findOne({_id: _id});
-    res.render('order/view' , {title: 'dashboard222' , order:order})
+    res.render('order/view' , {title: 'View Order' , order:order})
   } catch(error) {
       res.status(404).json({message: error.message});
   }    

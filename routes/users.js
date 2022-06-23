@@ -7,15 +7,15 @@ var commonfunc = require('../commonfunction.js');
 
 //login handle
 router.get('/login',(req,res)=>{
-    res.render('login');
+    res.render('login', {title: 'Login'});
 })
 
 router.get('/imlogin',(req,res)=>{
-    res.render('inspection-login.ejs');
+    res.render('inspection-login.ejs', {title: 'Inspection Manager Login'});
 })
 
 router.get('/register', commonfunc.isAdminAuthenticated, (req,res)=>{
-    res.render('register')
+    res.render('register', {title: 'Register'})
     })
 //Register handle
 // router.post('/login',(req,res,next)=>{
@@ -44,7 +44,7 @@ router.get('/list', commonfunc.isAdminAuthenticated, async (req,res)=>{
    var moment = require('moment');
       try {
           const user= await User.find({"role": {$ne : 1}});
-        res.render('user/list' , {title: 'dashboard' , user:user, moment:moment})
+        res.render('user/list' , {title: 'List User' , user:user, moment:moment})
 
         
       } catch(error) {

@@ -39,7 +39,7 @@ router.get('/', commonfunc.isClientAuthenticated, async (req,res)=>{
 
     try {
      
-        res.render('checklist/checklist',{user: req.user });
+        res.render('checklist/checklist',{user: req.user, title: 'Create Checklist' });
   } catch(error) {
       res.status(404).json({message: error.message});
   }
@@ -55,7 +55,7 @@ router.get('/list', commonfunc.isAuthenticatedbutnotInspection, async (req,res)=
         const checklist= await Checklist.find();
 
         console.log(checklist);
-      res.render('checklist/list' , {title: 'dashboard' , checklist:checklist, moment:moment})
+      res.render('checklist/list' , {title: 'List Checklist' , checklist:checklist, moment:moment})
     } catch(error) {
         res.status(404).json({message: error.message});
     }
@@ -67,7 +67,7 @@ router.get('/edit/:id', commonfunc.isAdminClientAuthenticated, async(req,res)=>{
     const _id = req.params.id;
     try {
         const checklist = await Checklist.findOne({_id: _id});
-      res.render('checklist/edit' , {title: 'dashboard222' , checklist:checklist})
+      res.render('checklist/edit' , {title: 'Edit Checklist' , checklist:checklist})
     } catch(error) {
         res.status(404).json({message: error.message});
     }    
@@ -77,7 +77,7 @@ router.get('/view/:id', commonfunc.isAuthenticatedbutnotInspection, async(req,re
   const _id = req.params.id;
   try {
       const checklist = await Checklist.findOne({_id: _id});
-    res.render('checklist/view' , {title: 'dashboard222' , checklist:checklist})
+    res.render('checklist/view' , {title: 'View Checklist' , checklist:checklist})
   } catch(error) {
       res.status(404).json({message: error.message});
   }    
