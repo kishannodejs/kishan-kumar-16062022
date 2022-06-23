@@ -46,5 +46,6 @@ app.use((req,res,next)=> {
 app.use('/',require('./routes/index'));
 app.use('/users',require('./routes/users'));
 app.use('/orders',require('./routes/orders'));
+app.use('/checklists',require('./routes/checklists'));
 
 app.listen(3000); 

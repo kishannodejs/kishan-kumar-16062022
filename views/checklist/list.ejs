@@ -1,0 +1,107 @@
+<%- include('../client_sidebar'); %>
+  
+  <div class="content">
+    <div class="ks-nav-body-wrapper">
+      <div class="container-fluid">
+        <h3><%- include ('../partials/messages') %></h3>
+         <table id="ks-datatable" class="table table-striped table-bordered" width="100%">
+          <thead>
+           <tr>
+            <th>S.No.</th>
+            <th>Cooler</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Created At</th>           
+            <th class="text-center">Actions</th>
+           </tr>
+          </thead>
+          <tbody>
+           <% if(checklist.length > 0) { for(var i=0; i < checklist.length; i++) { %>
+             <tr>
+              <td><%=(i+1)%></td>
+              <td class="capitalize"><%=checklist[i].cooler==1 ? 'Yes' : 'No' %></td>
+              <td><%=checklist[i].category==1 ? 'Eatable':'' %><%=checklist[i].category==2 ? 'Drinkable':'' %><%=checklist[i].category==3 ? 'Medicine':'' %></td>
+              <td><img src="../images/uploads/<%=checklist[i].image_path%>" width="50px" /></td>              
+              <td><%=moment(checklist[i].date).format("MMM-DD-YYYY h:m A")%></td>
+              <td class="text-center">
+                
+                <% if(session.role == 4 || session.role == 1) { %>  
+                <a href="/checklists/edit/<%=checklist[i]._id%>" title="Edit">Edit</a>
+                <a href="/checklists/view/<%=checklist[i]._id%>" title="View">View</a>
+                 <a href="/checklists/delete/<%=checklist[i]._id%>" title="Delete" onclick="return confirm('Are you sure to delete this record?');">Delete</a>
+                 <% } %>
+
+                 <% if(session.role == 2) { %>  
+                 <a href="/checklists/view/<%=checklist[i]._id%>" title="View">View</a>
+                <% } %>
+                
+                </td>
+             </tr>
+             <% } %>
+             <tr><td colspan="6" class="text-right">
+             </td></tr>
+             <% } else { %>
+             <tr><td colspan="6" class="text-center">No record available!</td></tr>
+             <% } %>
+          </tbody>
+         </table>
+      </div>
+     </div>
+  </div>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Lato", sans-serif;
+    }
+    
+    .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 200px;
+      background-color: #f1f1f1;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+    }
+    
+    .sidebar a {
+      display: block;
+      color: black;
+      padding: 16px;
+      text-decoration: none;
+    }
+     
+    .sidebar a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+    
+    .sidebar a:hover:not(.active) {
+      background-color: #555;
+      color: white;
+    }
+    
+    div.content {
+      margin-left: 200px;
+      padding: 1px 16px;
+      height: 1000px;
+    }
+    
+    @media screen and (max-width: 700px) {
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+      }
+      .sidebar a {float: left;}
+      div.content {margin-left: 0;}
+    }
+    
+    @media screen and (max-width: 400px) {
+      .sidebar a {
+        text-align: center;
+        float: none;
+      }
+    }
+    </style>

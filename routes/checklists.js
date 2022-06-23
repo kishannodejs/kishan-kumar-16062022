@@ -2,7 +2,7 @@ const express = require('express');
 var multer  = require('multer');
 const router  = express.Router();
 var commonfunc = require('../commonfunction.js');
-const Order = require("../models/order");
+const Checklist = require("../models/checklist");
 const User = require("../models/user");
 
 
@@ -34,13 +34,12 @@ const upload = multer({
 
 //login page
 
-router.get('/', commonfunc.isAuthenticated, async (req,res)=>{
+router.get('/', commonfunc.isClientAuthenticated, async (req,res)=>{
 
 
     try {
-      const userclient= await User.find({role : 4});
-      console.log(userclient);
-        res.render('order/order',{user: req.user, userclient:userclient, title: 'Create Order' });
+     
+        res.render('checklist/checklist',{user: req.user, title: 'Create Checklist' });
   } catch(error) {
       res.status(404).json({message: error.message});
   }
@@ -48,19 +47,15 @@ router.get('/', commonfunc.isAuthenticated, async (req,res)=>{
 
 })
 
-router.get('/list', commonfunc.isAuthenticated, async (req,res)=>{
+router.get('/list', commonfunc.isAuthenticatedbutnotInspection, async (req,res)=>{
 
-  session = req.session;
 
-  console.log(session);
-
- //   res.render('order/list',{user: req.user });
  var moment = require('moment');
     try {
-        const order= await Order.find();
+        const checklist= await Checklist.find();
 
-        console.log(order);
-      res.render('order/list' , {title: 'List Order' , order:order, moment:moment})
+        console.log(checklist);
+      res.render('checklist/list' , {title: 'List Checklist' , checklist:checklist, moment:moment})
     } catch(error) {
         res.status(404).json({message: error.message});
     }
@@ -68,48 +63,27 @@ router.get('/list', commonfunc.isAuthenticated, async (req,res)=>{
 
 
 
-router.get('/myorders', commonfunc.isAuthenticated, async (req,res)=>{
-
-  session = req.session;
-
-  console.log(session);
-
-  console.log(session.userid);
-
- //   res.render('order/list',{user: req.user });
- var moment = require('moment');
-    try {
-        const order= await Order.find({order_number:session.userid});
-
-        console.log(order);
-      res.render('order/myorder' , {title: 'My orders' , order:order, moment:moment})
-    } catch(error) {
-        res.status(404).json({message: error.message});
-    }
-})
-
-
-router.get('/edit/:id', commonfunc.isAuthenticated, async(req,res)=>{
+router.get('/edit/:id', commonfunc.isAdminClientAuthenticated, async(req,res)=>{
     const _id = req.params.id;
     try {
-        const order = await Order.findOne({_id: _id});
-      res.render('order/edit' , {title: 'Edit Order' , order:order})
+        const checklist = await Checklist.findOne({_id: _id});
+      res.render('checklist/edit' , {title: 'Edit Checklist' , checklist:checklist})
     } catch(error) {
         res.status(404).json({message: error.message});
     }    
 })
 
-router.get('/view/:id', commonfunc.isAuthenticated, async(req,res)=>{
+router.get('/view/:id', commonfunc.isAuthenticatedbutnotInspection, async(req,res)=>{
   const _id = req.params.id;
   try {
-      const order = await Order.findOne({_id: _id});
-    res.render('order/view' , {title: 'View Order' , order:order})
+      const checklist = await Checklist.findOne({_id: _id});
+    res.render('checklist/view' , {title: 'View Checklist' , checklist:checklist})
   } catch(error) {
       res.status(404).json({message: error.message});
   }    
 })
 
-router.post('/edit/:id', commonfunc.isAuthenticated, upload.single('order_file'), async(req,res)=>{
+router.post('/edit/:id', commonfunc.isAdminClientAuthenticated, upload.single('order_file'), async(req,res)=>{
     const _id = req.params.id;
      
     try{
@@ -128,16 +102,19 @@ router.post('/edit/:id', commonfunc.isAuthenticated, upload.single('order_file')
         //   }
 
 
-        await Order.findOneAndUpdate({
+        await Checklist.findOneAndUpdate({
             _id: _id,
         },
         {   
-            note:req.body.note,
-            status:req.body.status
+            cooler:req.body.cooler,
+            category:req.body.category,
+            licence:req.body.licence,
+            driver_number:req.body.driver_number,
+            vehicle_rc:req.body.vehicle_rc
         }
         )
-        req.flash('success_msg','Order is successfully Updated!');
-        res.redirect('/orders/list');
+        req.flash('success_msg','Checklist is successfully Updated!');
+        res.redirect('/checklists/list');
 
     } catch (error) {
         res.status(401).json({message: error.message});
@@ -150,13 +127,11 @@ router.post('/edit/:id', commonfunc.isAuthenticated, upload.single('order_file')
 
 
 
-router.post('/add', commonfunc.isAuthenticated, upload.single('order_file'), async(req,res)=>{
+router.post('/add', commonfunc.isClientAuthenticated, upload.single('order_file'), async(req,res)=>{
 
-    console.log(req.body);
 
-    console.log(req.files);
 
-    const {cooler, category, licence, driver_number, vehicle_rc, note, order_number, order_file} = req.body;
+    const {cooler, category, licence, driver_number, vehicle_rc, order_number, order_file} = req.body;
 
     //    if (req.file) {
     //         console.log(req.file);
@@ -171,27 +146,26 @@ router.post('/add', commonfunc.isAuthenticated, upload.single('order_file'), asy
     //         });
     //       }
 
-    const newOrder = new Order({
+    const newChecklist = new Checklist({
         cooler : cooler,
         category : category,
         licence : licence,
         driver_number: driver_number,
         vehicle_rc : vehicle_rc,
-        note : note,
         order_number:order_number,
         image_path:req.file.filename
     });
 
-    console.log(newOrder);
+    console.log(newChecklist);
 
   
 
     
 
     try {
-        await newOrder.save()
-        req.flash('success_msg','Order is successfully Created!');
-        res.redirect('/orders/list');
+        await newChecklist.save()
+        req.flash('success_msg','Checklist is successfully Created!');
+        res.redirect('/checklists/list');
 
     } catch(error) {
         res.status(400).json({ message : error.message});
@@ -203,14 +177,14 @@ router.post('/add', commonfunc.isAuthenticated, upload.single('order_file'), asy
 
 
 
-router.get('/delete/:id', commonfunc.isAuthenticated, async(req,res)=>{
+router.get('/delete/:id', commonfunc.isAdminClientAuthenticated, async(req,res)=>{
 
   
   const _id = req.params.id;
    
   try{
-      await Order.findOneAndRemove({ _id: _id});
-      res.redirect('/orders/list');
+      await Checklist.findOneAndRemove({ _id: _id});
+      res.redirect('/checklists/list');
 
   } catch (error) {
       res.status(401).json({message: error.message});
