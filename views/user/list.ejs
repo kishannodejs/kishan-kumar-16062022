@@ -9,6 +9,7 @@
             <th>S.No.</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Mobile</th>
             <th>Role</th>
             <th>Created At</th>   
             <th class="text-center">Actions</th>
@@ -20,6 +21,7 @@
               <td><%=(i+1)%></td>
               <td class="capitalize"><%=user[i].name %></td>
               <td><%=user[i].email %></td>
+              <td><%=user[i].mobile %></td>
                 <% if(user[i].role == 1) { %>
                   <td class="text-center">Admin</td>
                   <% } else if(user[i].role == 2) { %>

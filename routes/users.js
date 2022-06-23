@@ -94,7 +94,7 @@ function(req, res) {
   router.post('/register', commonfunc.isAdminAuthenticated, (req,res)=>{
     const {name,email, mobile, password, password2} = req.body;
     let errors = [];
-    console.log(' Name ' + name+ ' email :' + email+ ' pass:' + password);
+    console.log(' Name ' + name+ ' email :' + email+ ' mobile :' + mobile+ ' pass:' + password);
     if(!name || !email || !password || !password2) {
         errors.push({msg : "Please fill in all fields"})
     }
@@ -117,10 +117,42 @@ function(req, res) {
         password2 : password2})
      } else {
         //validation passed
-       User.findOne({email : email}).exec((err,user)=>{
-        console.log(user);   
+       User.findOne({$or: [{email: email},{mobile: mobile}, ],}).exec((err,user)=>{
+        console.log(user);  
+        // console.log(email);  
+        // console.log(mobile);  
+        console.log("AAAAAAAAAAAAa");  
+
+    //   //  console.log(user.email);  
+
+    //     if (typeof user.email== null) {
+    //         user.email = '';
+    //         //Do something since x is defined.
+    //     }
+
+
+    //     if (typeof user.mobile== null) {
+    //         user.mobile = '';
+    //         //Do something since x is defined.
+    //     }
+
+
+
+        // console.log(user.mobile);   
+
+       
         if(user) {
-            errors.push({msg: 'email already registered'});
+
+            if(user.email==email && user.mobile==mobile){
+                var mymsg = "Email and mobile already registered.";
+            } else if(user.email==email){
+                var mymsg = "Email already registered.";
+            } else if(user.mobile==mobile){
+                var mymsg = "Mobile already registered.";
+            }
+
+            
+            errors.push({msg: mymsg});
             res.render('register',{errors,name,email,password,password2})  
            } else {
             const newUser = new User({
