@@ -62,7 +62,7 @@ router.post('/login',
 					session.email = req.user.email;
 					session.name = req.user.name;
 					session.role = req.user.role;
-                   // session.mobile = req.user.mobile;
+                    session.mobile = req.user.mobile;
 
    // res.redirect('/dashboard');
 
@@ -82,7 +82,7 @@ function(req, res) {
                   session.email = req.user.email;
                   session.name = req.user.name;
                   session.role = req.user.role;
-                 // session.mobile = req.user.mobile;
+                  session.mobile = req.user.mobile;
 
  // res.redirect('/dashboard');
 
