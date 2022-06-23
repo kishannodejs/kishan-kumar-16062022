@@ -13,6 +13,7 @@
       placeholder="Enter Name"
       value="<%= typeof name != 'undefined' ? name : '' %>"
       class="form-control"
+      required
     />
   
 </div>
@@ -25,6 +26,7 @@
       placeholder="Enter Email"
       value="<%= typeof email != 'undefined' ? email : '' %>"
       class="form-control"
+      required
     />
   </div>
 
@@ -37,7 +39,9 @@
       placeholder="Enter Mobile"
       pattern="[6789][0-9]{9}"
       value="<%= typeof mobile != 'undefined' ? mobile : '' %>"
-      class="form-control" />
+      class="form-control"
+      required
+       />
   </div>
 
 
@@ -52,6 +56,7 @@
       placeholder="Create Password"
       value="<%= typeof password != 'undefined' ? password : '' %>"
       class="form-control"
+      required
     />
   </div>
   <div >
@@ -62,6 +67,7 @@
       placeholder="Confirm Password"
       value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
       class="form-control"
+      required
     />
   </div>
   <button type="submit" class="btn btn-default">

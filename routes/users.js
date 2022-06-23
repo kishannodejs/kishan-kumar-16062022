@@ -54,8 +54,9 @@ router.get('/list', commonfunc.isAdminAuthenticated, async (req,res)=>{
 
 
 router.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/users/login' }),
+  passport.authenticate('local', { failureRedirect: '/users/login', failureFlash : true }),
   function(req, res) {
+
 
     session = req.session;
 					session.userid = req.user._id;
@@ -72,7 +73,7 @@ router.post('/login',
 
   
 router.post('/imlogin', 
-passport.authenticate('local', { failureRedirect: '/users/imlogin' }),
+passport.authenticate('local', { failureRedirect: '/users/imlogin', failureFlash : true }),
 function(req, res) {
 
     console.log(req.body);
@@ -211,6 +212,7 @@ router.post('/edit/:id', commonfunc.isAdminAuthenticated, async(req,res)=>{
             role:req.body.role
         }
         )
+        req.flash('success_msg','User updated successfully!');
         res.redirect('/users/list');
 
     } catch (error) {

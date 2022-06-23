@@ -16,8 +16,8 @@
          
           <label for="category">Category *</label>
           <div class="form-check">
-          <select name="category" class="selectpicker">
-              <option>Select Category</option>
+          <select name="category" class="selectpicker" required>
+              <option value="">Select Category</option>
               <option value="1">Eatable</option>
               <option value="2">Drinkable</option>
               <option value="3">Medicine</option>
@@ -27,15 +27,15 @@
           <label for="driver">Driver Details*</label>
 
         <div class="form-check">       
-            <input type="checkbox" class="form-check-input" id="check1" name="licence" value="1">
+            <input type="checkbox" class="form-check-input" id="check1" name="licence" value="1" >
             <label class="form-check-label" for="check1">Licence Present</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="check2" name="driver_number" value="1">
+            <input type="checkbox" class="form-check-input" id="check2" name="driver_number" value="1" >
             <label class="form-check-label" for="check2">Driver Number Active</label>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="vehicle_rc" value="1">
+            <input type="checkbox" class="form-check-input" name="vehicle_rc" value="1" >
             <label class="form-check-label">Vehicle RC Book Present</label>
           </div>
 
@@ -48,15 +48,15 @@
 
           <label for="email">Attach *</label>
           <div class="form-check">
-            <input type="file" id="myfile" name="order_file">
+            <input type="file" id="myfile" name="order_file" required>
           </div>
 
 
 
           <label for="order_number">Client *</label>
           <div class="form-check">
-          <select name="order_number" class="selectpicker">
-              <option>Select Client</option>
+          <select name="order_number" class="selectpicker" required>
+              <option value="">Select Client</option>
               <% if(userclient.length > 0) { for(var i=0; i < userclient.length; i++) { %></order.length>
               <option value="<%=userclient[i]._id %>"><%=userclient[i].name %></option>
               <% } %>

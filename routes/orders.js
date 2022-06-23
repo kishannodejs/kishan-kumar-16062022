@@ -136,6 +136,7 @@ router.post('/edit/:id', commonfunc.isAuthenticated, upload.single('order_file')
             status:req.body.status
         }
         )
+        req.flash('success_msg','Order is successfully Updated!');
         res.redirect('/orders/list');
 
     } catch (error) {
@@ -189,7 +190,7 @@ router.post('/add', commonfunc.isAuthenticated, upload.single('order_file'), asy
 
     try {
         await newOrder.save()
-
+        req.flash('success_msg','Order is successfully Created!');
         res.redirect('/orders/list');
 
     } catch(error) {

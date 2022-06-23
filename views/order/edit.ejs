@@ -19,8 +19,8 @@
        
         <label for="category">Category *</label>
         <div class="form-check">
-        <select name="category" class="selectpicker">
-            <option>Select Category</option>
+        <select name="category" class="selectpicker" required>
+            <option value="">Select Category</option>
             <option value="1"  <%=order.category==1 ? 'selected':'' %>>Eatable</option>
             <option value="2" <%=order.category==2 ? 'selected':'' %>>Drinkable</option>
             <option value="3" <%=order.category==3 ? 'selected':'' %>>Medicine</option>

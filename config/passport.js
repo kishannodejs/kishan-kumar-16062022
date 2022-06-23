@@ -25,8 +25,17 @@ module.exports = function(passport){
              User.findOne({$or: [{email: email},{mobile: mobile}, ],})
           //  User.findOne({email:email})
             .then((user)=>{
-                if(!user){
-                    return done(null,false,{message:'email not registered'});
+                if(!user){ console.log("User is not exist");
+                
+                if(email==''){
+                   var myemlvar = "Mobile";
+                } else {
+                    var myemlvar = "Email"; 
+                }
+                
+                
+                console.log(email); console.log("User is not exist");
+                    return done(null,false,{message:myemlvar+' not registered'});
                 }
                 //math passwords
                 bcrypt.compare(password,user.password,(err,isMatch)=>{
