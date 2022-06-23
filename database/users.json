@@ -41,7 +41,7 @@
     "$oid": "62b32f82d322343a15f3c24c"
   },
   "name": "Inspection Manager",
-  "email": "7291864693",
+  "email": "inspection@gmail.com",
   "mobile": {
     "$numberLong": "7291864693"
   },
@@ -109,6 +109,158 @@
   "date": {
     "$date": {
       "$numberLong": "1655919484259"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b40163b7c5d0f9fa673ba7"
+  },
+  "name": "Admin",
+  "email": "admin1@gmail.com",
+  "mobile": {
+    "$numberLong": "8282828282"
+  },
+  "password": "$2b$10$x7W99X8LCfGDjZ2dKjfHN.fdpBm4.Uo6YupoBWYmxih13sWLsJmOi",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": 4,
+  "date": {
+    "$date": {
+      "$numberLong": "1655964003377"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b401ccb7c5d0f9fa673bb8"
+  },
+  "name": "Admin",
+  "email": "admin2@gmail.com",
+  "mobile": {
+    "$numberLong": "9999999999"
+  },
+  "password": "$2b$10$jQDRQzHjG4P2.0DAtv/2SuYrTAADEMoLCcsQgRzHJICmErUBQdINe",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": 4,
+  "date": {
+    "$date": {
+      "$numberLong": "1655964108069"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b42aefca0b1748540e10de"
+  },
+  "name": "Admin",
+  "email": "admin7@gmail.com",
+  "mobile": {
+    "$numberLong": "7777777777"
+  },
+  "password": "$2b$10$Y885tQbpDJhexXBj17fdiOlqlPTqP7dN0NUpKrzVXtd47O1Jc9SH.",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": 4,
+  "date": {
+    "$date": {
+      "$numberLong": "1655974639993"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b42c2cb051848273b39642"
+  },
+  "name": "Admin",
+  "email": "admint@gmail.com",
+  "mobile": {
+    "$numberLong": "6666666666"
+  },
+  "password": "$2b$10$nGEcHgVO0Fp.heC8ONg2tuDXTQtJnYuBYBFBo0Rpi7eMN40aRQm32",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": 4,
+  "date": {
+    "$date": {
+      "$numberLong": "1655974956861"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b42c85b051848273b39649"
+  },
+  "name": "Admin",
+  "email": "adminr@gmail.com",
+  "mobile": {
+    "$numberLong": "6767676767"
+  },
+  "password": "$2b$10$Mar3W4SzeHlL3JLQCzz//.jiw0XkACovL3kIBt8rvT0tl7nZQJh0y",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": 4,
+  "date": {
+    "$date": {
+      "$numberLong": "1655975045624"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b42cd3b051848273b39650"
+  },
+  "name": "Test Client",
+  "email": "test1@gmail.com",
+  "mobile": {
+    "$numberLong": "6868686868"
+  },
+  "password": "$2b$10$keZ98566VNvfoKzOeIoadeDtyWwVfYziDvIWeLxxfvsngZPMpP5iK",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": 4,
+  "date": {
+    "$date": {
+      "$numberLong": "1655975123866"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b42cfbb051848273b39659"
+  },
+  "name": "Test Client",
+  "email": "admin3@gmail.com",
+  "mobile": {
+    "$numberLong": "6969696969"
+  },
+  "password": "$2b$10$F0ryjBojb056DWW/xv8hpeJMGIamn095Rbkup3aTaRHHrONWJzEZS",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": 4,
+  "date": {
+    "$date": {
+      "$numberLong": "1655975163403"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b4334335403705200c6a8f"
+  },
+  "name": "Admin",
+  "email": "adminrt@gmail.com",
+  "mobile": {
+    "$numberLong": "6363636363"
+  },
+  "password": "$2b$10$lg5.ZD/qzaywpvjOeoHxvOfhgKiG8XsXVdqInalvuPVuV3rtmyH1u",
+  "isAdmin": false,
+  "isOwner": false,
+  "role": 3,
+  "date": {
+    "$date": {
+      "$numberLong": "1655976771934"
     }
   },
   "__v": 0

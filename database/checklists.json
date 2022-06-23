@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "62b448b0aebf2ad5b68b2031"
+  },
+  "cooler": 1,
+  "category": 3,
+  "licence": 1,
+  "driver_number": 1,
+  "image_path": "1655982256692_truck.jfif",
+  "order_number": "62b32fc6d322343a15f3c253",
+  "date": {
+    "$date": {
+      "$numberLong": "1655982256705"
+    }
+  },
+  "__v": 0,
+  "vehicle_rc": 1
+},{
+  "_id": {
+    "$oid": "62b459c13ecdbd8f08aba237"
+  },
+  "cooler": 1,
+  "category": 2,
+  "licence": 1,
+  "driver_number": 1,
+  "vehicle_rc": 1,
+  "image_path": "1655986625183_goods.jpg",
+  "order_number": "62b32fc6d322343a15f3c253",
+  "date": {
+    "$date": {
+      "$numberLong": "1655986625214"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62b45a3accfe7b08e4a5abb9"
+  },
+  "cooler": 1,
+  "category": 2,
+  "licence": 1,
+  "driver_number": 1,
+  "vehicle_rc": 1,
+  "image_path": "1655986746363_truck.jfif",
+  "order_number": "62b32fc6d322343a15f3c253",
+  "date": {
+    "$date": {
+      "$numberLong": "1655986746371"
+    }
+  },
+  "__v": 0
+}]
